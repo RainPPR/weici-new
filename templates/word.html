@@ -1,0 +1,163 @@
+{% extends "main.html" %}
+
+{% block content %}
+{% for entry in entries %}
+<div class="word-card">
+    <div class="header">
+        <h1>{{ entry.word }}</h1>
+        <span class="pos">{{ entry.part_of_speech }}</span>
+        {% if entry.point == 1 %}<span class="badge">重难点</span>{% endif %}
+    </div>
+
+    <div class="phonetics">
+        {% if entry.en_phonetic_symbols %}
+        <div class="phonetic">
+            <span class="label">英音</span>
+            <span class="symbol">[{{ entry.en_phonetic_symbols }}]</span>
+        </div>
+        {% endif %}
+        {% if entry.usa_phonetic_symbols %}
+        <div class="phonetic">
+            <span class="label">美音</span>
+            <span class="symbol">[{{ entry.usa_phonetic_symbols }}]</span>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="attributes">
+        {% if entry.lv_frequency %}<span class="tag">词频 {{ entry.lv_frequency }}</span>{% endif %}
+        {% if entry.lv_speak %}<span class="tag">口语 {{ entry.lv_speak }}</span>{% endif %}
+        {% if entry.lv_write %}<span class="tag">书面 {{ entry.lv_write }}</span>{% endif %}
+        {% if entry.lv_read %}<span class="tag">阅读 {{ entry.lv_read }}</span>{% endif %}
+    </div>
+
+    {% if entry.use_method %}
+    <div class="section usage">
+        <h2>用法点拨</h2>
+        <p>{{ entry.use_method }}</p>
+    </div>
+    {% endif %}
+
+    {% if entry.gy_paraphrase and entry.gy_paraphrase.length > 0 %}
+    <div class="section translations">
+        <h2>英文释义</h2>
+        <ul class="translation-list">
+            {% for item in entry.gy_paraphrase %}
+            <li>
+                <div class="trans-header">
+                    {% if item.translate_frequency == 1 %}<span class="star">★</span>{% endif %}
+                    <span class="cn">{{ item.chinese }}</span>
+                    {% if item.english %}<span class="en">({{ item.english }})</span>{% endif %}
+                </div>
+                
+                {% if item.antonym %}<div class="rel">反义词: {{ item.antonym }}</div>{% endif %}
+                {% if item.synonyms %}<div class="rel">近义词: {{ item.synonyms }}</div>{% endif %}
+
+                {% if item.gy_example %}
+                <ul class="examples">
+                    {% for ex in item.gy_example %}
+                    <li>
+                        <p class="en">{{ ex.english | safe }}</p>
+                        <p class="cn">{{ ex.chinese }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if entry.gy_fixed_collocation and entry.gy_fixed_collocation.length > 0 %}
+    <div class="section collocation">
+        <h2>固定搭配</h2>
+        {% for item in entry.gy_fixed_collocation %}
+            <div class="collo-group">
+                <h3>{{ item.fixed_word }}</h3>
+                {% for para in item.gy_paraphrase %}
+                <div class="collo-item">
+                    <span class="cn">{{ para.chinese }}</span>
+                    {% if para.english %}<span class="en">({{ para.english }})</span>{% endif %}
+                    {% if para.gy_example %}
+                    <ul class="examples">
+                        {% for ex in para.gy_example %}
+                        <li>
+                            <p class="en">{{ ex.english }}</p>
+                            <p class="cn">{{ ex.chinese }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    </div>
+{% if not loop.last %}
+    <hr style="border: 0; border-top: 1px dashed #ccc; margin: 30px 0;">
+{% endif %}
+{% endfor %}
+
+<!-- Jump/Related Table -->
+{% if relatedIndexed.length or relatedUnindexed.length or backlinkIndexed.length or backlinkUnindexed.length %}
+<div class="dataset-jump-table">
+    <hr class="separator" />
+    <table class="jump-table">
+        <thead>
+            <tr>
+                <th colspan="2">Related Words</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if relatedIndexed.length or relatedUnindexed.length %}
+            <tr>
+                <td class="jump-label">相关单词</td>
+                <td class="jump-content">
+                    {% if relatedIndexed.length %}
+                        <div class="rel-block">
+                            {% for link in relatedIndexed %}
+                            <a href="{{ link }}.html" class="jump-link">{{ link }}</a>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if relatedUnindexed.length %}
+                        <div class="rel-block unindexed">
+                            {% for text in relatedUnindexed %}
+                            <span class="jump-text">{{ text }}</span>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+
+            {% if backlinkIndexed.length or backlinkUnindexed.length %}
+            <tr>
+                <td class="jump-label">延伸单词</td>
+                <td class="jump-content">
+                    {% if backlinkIndexed.length %}
+                        <div class="rel-block">
+                            {% for link in backlinkIndexed %}
+                            <a href="{{ link }}.html" class="jump-link">{{ link }}</a>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if backlinkUnindexed.length %}
+                        <div class="rel-block unindexed">
+                            {% for text in backlinkUnindexed %}
+                            <span class="jump-text">{{ text }}</span>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock %}

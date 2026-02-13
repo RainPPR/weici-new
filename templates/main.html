@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    {% block meta %}
+    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=8">
-    <title>{{ title }}</title>
-    {% endblock %}
-    {% block styles %}
+    <title>{{ word if word else '维克多词汇索引' }} - 维克多词汇</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
     <style>
-        /* 这里是一些样式，为了 IE8 版本设计，同时对其他 IE8+ 版本的 IE、Chrome、Firefox、WebKit 等进行一致性强制适配，使他们的表现完全一致，不适用任何高级的语法和格式，一切为了兼容性和复古的适配 */
+        /* Fallback inline styles for absolute basics if CSS fails */
+        body { font-family: "SimSun", "宋体", serif; }
     </style>
-    {% endblock %}
 </head>
-
 <body>
-    {% block content %}
-    {% include "content.html" %}
-    {% endblock %}
-</body>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 
+    <div class="footer-wrapper">
+        <hr class="separator" />
+        {% if not is_index %}
+        <div class="footer-nav">
+            <a href="index.html">← 返回索引 (Back to Index)</a>
+        </div>
+        {% endif %}
+        <div class="footer-credits">
+            Powered by Weici-New (IE8 Compatible)
+        </div>
+    </div>
+</body>
 </html>

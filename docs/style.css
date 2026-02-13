@@ -1,0 +1,344 @@
+/* Reset & Base */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; /* IE8+ */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "SimSun", "宋体", "Courier New", monospace;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: bold; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+p { margin: 0; }
+
+a { color: #0066cc; text-decoration: none; outline: none; }
+a:hover { text-decoration: underline; }
+img { border: 0; -ms-interpolation-mode: bicubic; } /* IE-specific image smoothing and border fix */
+
+/* Layout */
+.container {
+    width: 960px; /* Standard width for old monitors */
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc; /* Fallback for no box-shadow */
+}
+
+/* Chrome Adapter (Reverse Compatibility) */
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 800px; /* Readability on wide screens */
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+}
+
+/* Word Card */
+.word-card {
+    padding: 10px;
+}
+
+.header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    zoom: 1; /* IE Trigger hasLayout */
+}
+.header:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+.header h1 {
+    float: left;
+    font-size: 32px;
+    margin-right: 15px;
+}
+
+.header .pos {
+    float: left;
+    font-size: 18px;
+    color: #666;
+    margin-top: 12px;
+}
+
+.header .badge {
+    float: right;
+    background-color: #cc0000;
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 12px;
+}
+
+/* Phonetics */
+.phonetics {
+    margin-bottom: 20px;
+    overflow: hidden; /* Clear floats */
+    zoom: 1;
+}
+
+.phonetic {
+    float: left;
+    margin-right: 30px;
+}
+
+.phonetic .label {
+    color: #888;
+    margin-right: 5px;
+}
+
+.phonetic .symbol {
+    /* "Arial Unicode MS" is the gold standard for phonetics on old Win systems */
+    font-family: "Arial Unicode MS", "Lucida Sans Unicode", "Segoe UI Symbol", sans-serif;
+    font-weight: bold;
+}
+
+/* Attributes */
+.attributes {
+    margin-bottom: 20px;
+    zoom: 1;
+    overflow: hidden;
+}
+
+.tag {
+    float: left;
+    display: inline; /* Fixes "Double Margin Bug" in IE6/7/8 when floated */
+    background-color: #e0e0e0;
+    padding: 2px 8px;
+    margin-right: 10px;
+    font-size: 12px;
+    color: #555;
+    border: 1px solid #ccc;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    font-size: 18px;
+    border-left: 5px solid #0066cc;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.usage p {
+    line-height: 1.6;
+    background-color: #fff9e6;
+    padding: 10px;
+    border: 1px solid #f0e6b3;
+}
+
+/* Translations */
+.translation-list > li {
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 15px;
+}
+
+.trans-header {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.trans-header .star {
+    color: #f90;
+    margin-right: 5px;
+}
+
+.trans-header .cn {
+    font-weight: bold;
+    color: #222;
+}
+
+.trans-header .en {
+    color: #666;
+    margin-left: 10px;
+}
+
+.rel {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+/* Examples */
+.examples {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.examples li {
+    margin-bottom: 8px;
+}
+
+.examples .en {
+    font-weight: bold;
+    color: #444;
+}
+
+.examples .cn {
+    color: #888;
+    font-size: 13px;
+}
+
+/* Collocations */
+.collo-group h3 {
+    font-size: 15px;
+    color: #0066cc;
+    margin: 10px 0;
+}
+
+.collo-item {
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer-wrapper {
+    width: 960px;
+    margin: 20px auto 0 auto;
+    padding-bottom: 50px;
+    font-size: 13px;
+    color: #777;
+    text-align: center;
+}
+
+@media screen and (min-width: 1200px) {
+    .footer-wrapper {
+        width: 800px;
+    }
+}
+
+.footer-nav { margin-bottom: 8px; }
+.footer-credits { font-style: italic; color: #999; }
+.footer-wrapper .separator { border: 0; border-top: 1px solid #ddd; margin: 20px 0; }
+
+
+/* Index Page */
+.index-card .header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.index-card .header p {
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.index-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.index-table th {
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.index-table td {
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+    line-height: 1.8;
+}
+
+.letter-cell {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0066cc;
+    background-color: #f9f9f9;
+    width: 60px;
+}
+
+.word-list-cell a {
+    margin-right: 12px;
+    white-space: nowrap;
+    display: inline-block;
+    color: #0066cc;
+}
+.word-list-cell a:hover {
+    color: #cc0000;
+}
+
+/* Jump/Related Table */
+.dataset-jump-table {
+    margin-top: 30px;
+}
+
+.jump-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.jump-table th {
+    background-color: #f5f5f5;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    color: #0066cc;
+}
+
+.jump-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: top;
+}
+
+.jump-label {
+    width: 1%; /* Minimize width */
+    white-space: nowrap;
+    background-color: #fafafa;
+    font-weight: bold;
+    color: #555;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.jump-content {
+    line-height: 1.6;
+    zoom: 1;
+}
+
+.rel-block {
+    margin-bottom: 5px;
+    zoom: 1;
+}
+
+.rel-block.unindexed {
+    color: #666;
+    font-size: 13px;
+    margin-top: 5px;
+    border-top: 1px dashed #eee;
+    padding-top: 5px;
+}
+
+.jump-link {
+    display: inline-block;
+    margin-right: 8px;
+    color: #0066cc;
+    white-space: nowrap;
+}
+
+.jump-text {
+    display: inline-block;
+    margin-right: 8px;
+    color: #888;
+    white-space: nowrap;
+}

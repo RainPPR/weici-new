@@ -1,4 +1,31 @@
 {
+  "name": "weici-new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RainPPR/weici-new.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RainPPR/weici-new/issues"
+  },
+  "homepage": "https://github.com/RainPPR/weici-new#readme",
   "dependencies": {
+    "fs-extra": "^11.3.3",
+    "html-minifier": "^4.0.0",
+    "nunjucks": "^3.2.4",
+    "sqlite3": "^5.1.7"
   }
 }

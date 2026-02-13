@@ -1,11 +1,31 @@
 {% extends "main.html" %}
 
-
-{% block styles %}
-<style>
-</style>
-{% endblock %}
-
 {% block content %}
+<div class="index-card">
+    <div class="header">
+        <h1>维克多词汇索引</h1>
+        <p>共收录 {{ total_count }} 个单词</p>
+    </div>
 
+    <table class="index-table" border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th width="50">首字母</th>
+                <th>单词列表</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for letter, words in grouped_words %}
+            <tr>
+                <td class="letter-cell"><b>{{ letter }}</b></td>
+                <td class="word-list-cell">
+                    {% for word in words %}
+                    <a href="{{ word }}.html">{{ word }}</a> 
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
