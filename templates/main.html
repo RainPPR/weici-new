@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% block meta %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <title>{{ title }}</title>
+    {% endblock %}
+    {% block styles %}
+    <style>
+        /* 这里是一些样式，为了 IE8 版本设计，同时对其他 IE8+ 版本的 IE、Chrome、Firefox、WebKit 等进行一致性强制适配，使他们的表现完全一致，不适用任何高级的语法和格式，一切为了兼容性和复古的适配 */
+    </style>
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+    {% include "content.html" %}
+    {% endblock %}
+</body>
+
+</html>
